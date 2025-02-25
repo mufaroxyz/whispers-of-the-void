@@ -10,8 +10,8 @@ import net.minecraft.world.World
 import java.util.UUID
 
 object PlayerFearState : PersistentState() {
-    private var fearLevel = 0;
-    private var players = mutableMapOf<UUID, PlayerData>();
+    private var fearLevel = 0
+    private var players = mutableMapOf<UUID, PlayerData>()
 
     private val type: Type<PlayerFearState> = Type(
         this::createNew,
@@ -26,49 +26,49 @@ object PlayerFearState : PersistentState() {
         players.forEach({ (uuid, playerData) ->
             val playerNbt = NbtCompound();
             playerNbt.putInt("fearLevel", playerData.fearLevel);
-            playersNbt.put(uuid.toString(), playerNbt);
+            playersNbt.put(uuid.toString(), playerNbt)
         });
-        nbt.put("players", playersNbt);
+        nbt.put("players", playersNbt)
 
         return nbt
     }
 
     fun getServerState(server: MinecraftServer): PlayerFearState {
-        val world = server.getWorld(World.OVERWORLD);
+        val world = server.getWorld(World.OVERWORLD)
 
         return world?.persistentStateManager?.getOrCreate(type, WhispersOfTheVoid.MOD_ID)
             ?: run {
                 WhispersOfTheVoid.Logger.error("Failed to get persistent state manager for server");
                 this;
-            }.apply { markDirty() };
+            }.apply { markDirty() }
     }
 
     fun getPlayerState(player: LivingEntity): PlayerData {
         val serverState = player.world.server?.let { getServerState(it) }
-        val playerState = serverState?.players?.computeIfAbsent(player.uuid) { PlayerData() } ?: PlayerData();
-        return playerState;
+        val playerState = serverState?.players?.computeIfAbsent(player.uuid) { PlayerData() } ?: PlayerData()
+        return playerState
     }
 
     fun createFromNbt(nbt: NbtCompound, registries: RegistryWrapper.WrapperLookup?): PlayerFearState {
-        val state = PlayerFearState;
+        val state = PlayerFearState
 //        state.fearLevel = nbt.getInt("fearLevel");
 
-        val playersNbt = nbt.getCompound("players");
+        val playersNbt = nbt.getCompound("players")
         playersNbt.keys.forEach({ uuid ->
-            val playerNbt = playersNbt.getCompound(uuid);
-            val playerData = PlayerData();
-            playerData.fearLevel = playerNbt.getInt("fearLevel");
-            state.players[UUID.fromString(uuid)] = playerData;
-        });
+            val playerNbt = playersNbt.getCompound(uuid)
+            val playerData = PlayerData()
+            playerData.fearLevel = playerNbt.getInt("fearLevel")
+            state.players[UUID.fromString(uuid)] = playerData
+        })
 
-        return state;
+        return state
     }
 
-    public fun createNew(): PlayerFearState {
-        val state = PlayerFearState;
-        state.fearLevel = 0;
-        state.players = mutableMapOf();
-        return state;
+    fun createNew(): PlayerFearState {
+        val state = PlayerFearState
+        state.fearLevel = 0
+        state.players = mutableMapOf()
+        return state
     }
 
 }

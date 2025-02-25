@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory
 
 class WhispersOfTheVoidClient : ClientModInitializer {
     companion object {
-        val ClientLogger = LoggerFactory.getLogger(MOD_ID);
+        val ClientLogger = LoggerFactory.getLogger(MOD_ID)
     }
 
     override fun onInitializeClient() {
