@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "id": "whispers-of-the-void",
+  "version": "${version}",
+  "name": "whispers-of-the-void",
+  "description": "",
+  "authors": [],
+  "contact": {},
+  "license": "All-Rights-Reserved",
+  "icon": "assets/horror-test/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "client": [
+      {
+        "adapter": "kotlin",
+        "value": "dev.mufaro.whispersOfTheVoid.client.WhispersOfTheVoidClient"
+      }
+    ],
+    "main": [
+      {
+        "adapter": "kotlin",
+        "value": "dev.mufaro.whispersOfTheVoid.WhispersOfTheVoid"
+      }
+    ]
+  },
+  "mixins": [
+    "whispers-of-the-void.mixins.json",
+    {
+      "config": "whispers-of-the-void.client.mixins.json",
+      "environment": "client"
+    }
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}",
+    "fabric-language-kotlin": ">=1.10.8+kotlin.1.9.0"
+  }
+}
