@@ -8,7 +8,7 @@ import net.minecraft.entity.LivingEntity
 import net.minecraft.server.command.ServerCommandSource
 import net.minecraft.text.Text
 
-object FearCommandExecute {
+object FearCommandHandler {
     fun getFearLevel(ctx: CommandContext<ServerCommandSource>): Int {
         val source = ctx.source
         val player = EntityArgumentType.getPlayer(ctx, "target")
