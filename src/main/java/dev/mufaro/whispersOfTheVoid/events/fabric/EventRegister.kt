@@ -1,6 +1,6 @@
-package dev.mufaro.whispersOfTheVoid.events
+package dev.mufaro.whispersOfTheVoid.events.fabric
 
-object EventManager {
+object EventRegister {
     fun initialize() {
         ServerPlayConnectionHandler.registerServerPlayConnectionEvents()
         ServerTickHandler.registerServerTickEvents()

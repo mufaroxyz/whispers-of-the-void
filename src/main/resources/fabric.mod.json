@@ -7,7 +7,7 @@
   "authors": [],
   "contact": {},
   "license": "All-Rights-Reserved",
-  "icon": "assets/horror-test/icon.png",
+  "icon": "assets/whispers-of-the-void/icon.png",
   "environment": "*",
   "entrypoints": {
     "client": [

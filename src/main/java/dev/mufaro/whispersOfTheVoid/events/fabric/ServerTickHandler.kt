@@ -1,4 +1,4 @@
-package dev.mufaro.whispersOfTheVoid.events
+package dev.mufaro.whispersOfTheVoid.events.fabric
 
 import dev.mufaro.whispersOfTheVoid.data.PlayerFearState
 import dev.mufaro.whispersOfTheVoid.data.WorldConfigState
