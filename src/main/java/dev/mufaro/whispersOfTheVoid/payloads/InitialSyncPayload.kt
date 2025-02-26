@@ -1,6 +1,6 @@
 package dev.mufaro.whispersOfTheVoid.payloads
 
-import dev.mufaro.whispersOfTheVoid.NetworkingConstants
+import dev.mufaro.whispersOfTheVoid.data.NetworkingConstants
 import dev.mufaro.whispersOfTheVoid.data.PlayerData
 import net.minecraft.network.RegistryByteBuf
 import net.minecraft.network.codec.PacketCodec

@@ -1,4 +1,4 @@
-package dev.mufaro.whispersOfTheVoid.commands
+package dev.mufaro.whispersOfTheVoid.commands.handlers
 
 import com.mojang.brigadier.arguments.IntegerArgumentType
 import com.mojang.brigadier.context.CommandContext

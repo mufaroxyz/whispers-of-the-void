@@ -11,7 +11,7 @@ import java.util.UUID
 
 object PlayerFearState : PersistentState() {
     private var fearLevel = 0
-    private var players = mutableMapOf<UUID, PlayerData>()
+    var players = mutableMapOf<UUID, PlayerData>()
 
     private val type: Type<PlayerFearState> = Type(
         this::createNew,
@@ -23,11 +23,11 @@ object PlayerFearState : PersistentState() {
 //        nbt.putInt("fearLevel", fearLevel)
 
         val playersNbt = NbtCompound();
-        players.forEach({ (uuid, playerData) ->
+        players.forEach { (uuid, playerData) ->
             val playerNbt = NbtCompound();
             playerNbt.putInt("fearLevel", playerData.fearLevel);
             playersNbt.put(uuid.toString(), playerNbt)
-        });
+        };
         nbt.put("players", playersNbt)
 
         return nbt
@@ -36,7 +36,7 @@ object PlayerFearState : PersistentState() {
     fun getServerState(server: MinecraftServer): PlayerFearState {
         val world = server.getWorld(World.OVERWORLD)
 
-        return world?.persistentStateManager?.getOrCreate(type, WhispersOfTheVoid.MOD_ID)
+        return world?.persistentStateManager?.getOrCreate(type, "${WhispersOfTheVoid.MOD_ID}_player_fear")
             ?: run {
                 WhispersOfTheVoid.Logger.error("Failed to get persistent state manager for server");
                 this;
@@ -54,12 +54,12 @@ object PlayerFearState : PersistentState() {
 //        state.fearLevel = nbt.getInt("fearLevel");
 
         val playersNbt = nbt.getCompound("players")
-        playersNbt.keys.forEach({ uuid ->
+        playersNbt.keys.forEach { uuid ->
             val playerNbt = playersNbt.getCompound(uuid)
             val playerData = PlayerData()
             playerData.fearLevel = playerNbt.getInt("fearLevel")
             state.players[UUID.fromString(uuid)] = playerData
-        })
+        }
 
         return state
     }
@@ -70,5 +70,4 @@ object PlayerFearState : PersistentState() {
         state.players = mutableMapOf()
         return state
     }
-
 }

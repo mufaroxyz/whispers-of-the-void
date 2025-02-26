@@ -1,5 +1,6 @@
-package dev.mufaro.whispersOfTheVoid
+package dev.mufaro.whispersOfTheVoid.data
 
+import dev.mufaro.whispersOfTheVoid.WhispersOfTheVoid
 import net.minecraft.util.Identifier
 
 object NetworkingConstants {
