@@ -8,7 +8,8 @@ import net.minecraft.world.World
 enum class EventType {
     ENTITY_SPAWN,
     AMBIENT_SOUND,
-    SCREEN_EFFECT
+    SCREEN_EFFECT,
+    NONE
 }
 
 interface HorrorEvent {

@@ -8,7 +8,9 @@ import com.mojang.brigadier.builder.RequiredArgumentBuilder.argument
 import com.mojang.brigadier.tree.ArgumentCommandNode
 import dev.mufaro.whispersOfTheVoid.commands.handlers.ConfigCommandHandler
 import dev.mufaro.whispersOfTheVoid.commands.handlers.FearCommandHandler
+import dev.mufaro.whispersOfTheVoid.commands.handlers.TriggerCommandHandler
 import dev.mufaro.whispersOfTheVoid.commands.suggestions.ConfigSuggestionProvider
+import dev.mufaro.whispersOfTheVoid.commands.suggestions.EventSuggestionProvider
 import dev.mufaro.whispersOfTheVoid.data.worldConfigTypeMap
 import net.fabricmc.fabric.api.command.v2.CommandRegistrationCallback
 import net.minecraft.command.argument.EntityArgumentType
@@ -65,6 +67,12 @@ object CommandRegister {
                                 .executes(ConfigCommandHandler::setConfig)
                             )
                         )
+                    )
+                )
+                .then(CommandManager.literal("trigger")
+                    .then(argument<ServerCommandSource?, String?>("eventName", StringArgumentType.string())
+                        .suggests(EventSuggestionProvider())
+                        .executes(TriggerCommandHandler::handleTriggerCommand)
                     )
                 )
             )

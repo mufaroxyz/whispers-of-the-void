@@ -9,12 +9,13 @@ import net.minecraft.sound.SoundCategory
 import net.minecraft.sound.SoundEvent
 
 object BehindYouWhisperEvent : HorrorEvent {
-    private val sound = CustomSounds.BEHIND_YOU
     override val minFearLevel = Constants.FearLevel.LOW
     override val weight = 10
     override val type = EventType.AMBIENT_SOUND
 
     override fun execute(context: EventContext) {
-        context.player.playSoundToPlayer(sound, SoundCategory.AMBIENT, 1.0f, 1.0f)
+        if (!context.world.isClient) {
+            context.world.playSound(context.player, context.player.blockPos, CustomSounds.BEHIND_YOU, SoundCategory.AMBIENT, 1f, 1f)
+        }
     }
 }
