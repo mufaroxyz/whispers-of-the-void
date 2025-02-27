@@ -10,7 +10,7 @@ import org.slf4j.LoggerFactory
 
 class WhispersOfTheVoid : ModInitializer {
     companion object {
-        const val MOD_ID = "whispers_of_the_void"
+        const val MOD_ID = "whispers-of-the-void"
         val Logger = LoggerFactory.getLogger(MOD_ID)
     }
 

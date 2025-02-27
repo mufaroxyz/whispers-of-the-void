@@ -1,5 +1,6 @@
 package dev.mufaro.whispersOfTheVoid.events.mod.events
 
+import dev.mufaro.whispersOfTheVoid.WhispersOfTheVoid
 import dev.mufaro.whispersOfTheVoid.data.Constants
 import dev.mufaro.whispersOfTheVoid.events.mod.EventContext
 import dev.mufaro.whispersOfTheVoid.events.mod.EventType
@@ -15,7 +16,7 @@ object BehindYouWhisperEvent : HorrorEvent {
 
     override fun execute(context: EventContext) {
         if (!context.world.isClient) {
-            context.world.playSound(context.player, context.player.blockPos, CustomSounds.BEHIND_YOU, SoundCategory.AMBIENT, 1f, 1f)
+            context.world.playSound(null, context.player.blockPos, CustomSounds.BEHIND_YOU, SoundCategory.AMBIENT, 1f, 1f)
         }
     }
 }
