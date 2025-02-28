@@ -1,7 +1,7 @@
 package dev.mufaro.whispersOfTheVoid.client
 
 import dev.mufaro.whispersOfTheVoid.WhispersOfTheVoid.Companion.MOD_ID
-import dev.mufaro.whispersOfTheVoid.client.net.NetReceiverManager
+import dev.mufaro.whispersOfTheVoid.client.network.NetReceiverManager
 import net.fabricmc.api.ClientModInitializer
 import org.slf4j.LoggerFactory
 

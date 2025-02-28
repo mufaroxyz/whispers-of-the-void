@@ -4,9 +4,8 @@ import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.context.CommandContext
 import dev.mufaro.whispersOfTheVoid.WhispersOfTheVoid
 import dev.mufaro.whispersOfTheVoid.data.PlayerFearState
-import dev.mufaro.whispersOfTheVoid.events.mod.EventContext
-import dev.mufaro.whispersOfTheVoid.events.mod.EventType
 import dev.mufaro.whispersOfTheVoid.events.mod.HorrorEventRegister
+import dev.mufaro.whispersOfTheVoid.events.mod.ServerEventContext
 import dev.mufaro.whispersOfTheVoid.utils.castStringToEventType
 import dev.mufaro.whispersOfTheVoid.utils.numericFearToLevel
 import net.minecraft.entity.LivingEntity
@@ -28,11 +27,12 @@ object TriggerCommandHandler {
 
         val playerData = PlayerFearState.getPlayerState(player as PlayerEntity)
 
-        val eventContext = EventContext(
+        val eventContext = ServerEventContext(
             pos = player.blockPos,
             world = player.world,
             player = player,
             fearLevel = numericFearToLevel(playerData.fearLevel),
+            server = source.server
         )
 
         return try {

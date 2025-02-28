@@ -1,7 +1,7 @@
 package dev.mufaro.whispersOfTheVoid.events.fabric
 
 import dev.mufaro.whispersOfTheVoid.data.PlayerFearState
-import dev.mufaro.whispersOfTheVoid.payloads.InitialSyncPayload
+import dev.mufaro.whispersOfTheVoid.network.payloads.InitialSyncPayload
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs
 import net.fabricmc.fabric.api.networking.v1.ServerPlayConnectionEvents
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking

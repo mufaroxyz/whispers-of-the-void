@@ -1,4 +1,4 @@
-package dev.mufaro.whispersOfTheVoid.payloads
+package dev.mufaro.whispersOfTheVoid.network.payloads
 
 import dev.mufaro.whispersOfTheVoid.data.NetworkingConstants
 import dev.mufaro.whispersOfTheVoid.data.PlayerData

@@ -1,11 +1,11 @@
-package dev.mufaro.whispersOfTheVoid.client.net
+package dev.mufaro.whispersOfTheVoid.client.network.receivers
 
 import dev.mufaro.whispersOfTheVoid.client.WhispersOfTheVoidClient
-import dev.mufaro.whispersOfTheVoid.payloads.InitialSyncPayload
+import dev.mufaro.whispersOfTheVoid.network.payloads.InitialSyncPayload
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
 
-object InitialSyncHandler {
-    fun registerInitialSyncHandler() {
+object InitialSyncPacketReceiver {
+    fun registerReceiver() {
         ClientPlayNetworking.registerGlobalReceiver(InitialSyncPayload.ID, { payload, context ->
             val playerData = payload.playerData;
 

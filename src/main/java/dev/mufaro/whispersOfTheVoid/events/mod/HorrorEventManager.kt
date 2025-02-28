@@ -1,6 +1,6 @@
 package dev.mufaro.whispersOfTheVoid.events.mod
 
-import jdk.jfr.Event
+import dev.mufaro.whispersOfTheVoid.network.packets.HorrorEventPacket
 
 class HorrorEventManager {
     private val events = mutableMapOf<EventType, MutableList<HorrorEvent>>()
@@ -13,14 +13,25 @@ class HorrorEventManager {
         events.getOrPut(event.type) { mutableListOf() }.add(event)
     }
 
-    fun triggerEvent(context: EventContext, category: EventType, identifier: String) {
-        if (category == EventType.NONE) return;
-
-        val event = events[category]?.find { it.identifier == identifier } ?: throw IllegalArgumentException("Event $identifier not found")
-        event.execute(context)
+    fun getEvent(category: EventType, identifier: String): HorrorEvent {
+        return events[category]?.find { it.identifier == identifier } ?: throw IllegalArgumentException("Event $identifier not found")
     }
 
-    fun triggerRandomEvent(context: EventContext, ofType: EventType?) {
+    fun triggerEvent(context: ServerEventContext, category: EventType, identifier: String) {
+        if (category == EventType.NONE) return;
+
+        val event = getEvent(category, identifier)
+
+        val targetPlayers = event.executeServer(context)
+        if (targetPlayers is ReturnForClientExecution.SuccessPlayerList) {
+            HorrorEventPacket.sendToPlayers(targetPlayers.value, category, identifier)
+        }
+
+        // post-client execution just in case if it's needed
+        event.executeServerPost(context)
+    }
+
+    fun triggerRandomEvent(context: ServerEventContext, ofType: EventType?) {
         if (events.isEmpty() || (ofType != null && ofType == EventType.NONE)) return;
 
         val possibleEvents =
@@ -37,7 +48,7 @@ class HorrorEventManager {
         for (event in possibleEvents) {
             random -= event.weight
             if (random < 0) {
-                event.execute(context)
+                event.identifier?.let { triggerEvent(context, event.type, it) }
                 return
             }
         }
