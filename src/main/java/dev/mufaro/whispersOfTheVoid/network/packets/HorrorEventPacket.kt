@@ -7,12 +7,11 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
 import net.minecraft.server.network.ServerPlayerEntity
 
 object HorrorEventPacket {
-    fun sendToPlayers(players: Collection<ServerPlayerEntity>, eventType: EventType, id: String) {
+    fun sendToPlayers(players: Collection<ServerPlayerEntity>, eventId: String) {
         val buffer = PacketByteBufs.create()
-        buffer.writeString(id)
-        buffer.writeString(eventType.name)
+        buffer.writeString(eventId)
         players.forEach { player ->
-            ServerPlayNetworking.send(player, HorrorEventPayload(id, eventType))
+            ServerPlayNetworking.send(player, HorrorEventPayload(eventId))
         }
     }
 }

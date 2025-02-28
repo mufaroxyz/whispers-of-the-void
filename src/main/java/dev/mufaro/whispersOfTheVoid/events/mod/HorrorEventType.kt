@@ -1,6 +1,9 @@
 package dev.mufaro.whispersOfTheVoid.events.mod
 
+import com.mojang.authlib.minecraft.client.MinecraftClient
 import dev.mufaro.whispersOfTheVoid.data.Constants
+import net.fabricmc.api.EnvType
+import net.fabricmc.api.Environment
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
@@ -21,15 +24,9 @@ interface HorrorEvent {
     val weight: Int
     fun executeServer(context: ServerEventContext): ReturnForClientExecution<List<ServerPlayerEntity>>
     fun executeServerPost(context: ServerEventContext) {}
-    fun executeClient(context: ClientEventContext) {}
+    val eventId: String
+        get() = "${type.name}.$identifier"
 }
-
-data class ClientEventContext(
-    val world: World,
-    val pos: BlockPos,
-    val player: PlayerEntity,
-    val fearLevel: Constants.FearLevel
-)
 
 data class ServerEventContext(
     val world: World,

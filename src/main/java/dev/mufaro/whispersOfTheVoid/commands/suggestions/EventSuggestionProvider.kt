@@ -15,9 +15,9 @@ class EventSuggestionProvider : SuggestionProvider<ServerCommandSource> {
     ): CompletableFuture<Suggestions> {
         val events = HorrorEventRegister.getEventManager().getEvents()
 
-        events.forEach { (category, eventList) ->
+        events.forEach { (_, eventList) ->
             eventList.forEach { event ->
-                builder?.suggest("${category}.${event.identifier}")
+                builder?.suggest(event.eventId)
             }
         }
 

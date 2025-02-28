@@ -8,18 +8,16 @@ import net.minecraft.network.packet.CustomPayload
 import net.minecraft.util.Identifier
 
 @JvmRecord
-data class HorrorEventPayload(val id: String, val eventType: EventType) : CustomPayload {
+data class HorrorEventPayload(val eventId: String) : CustomPayload {
     companion object {
         val ID = CustomPayload.Id<HorrorEventPayload>(NetworkingConstants.HORROR_EVENT_PACKET_ID);
         val CODEC: PacketCodec<RegistryByteBuf, HorrorEventPayload> = PacketCodec.of(
             { payload, buf ->
-                buf.writeString(payload.id);
-                buf.writeString(payload.eventType.name);
+                buf.writeString(payload.eventId);
             },
             { buf ->
-                val id = buf.readString();
-                val eventType = EventType.valueOf(buf.readString());
-                HorrorEventPayload(id, eventType);
+                val eventId = buf.readString();
+                HorrorEventPayload(eventId);
             }
         )
     }

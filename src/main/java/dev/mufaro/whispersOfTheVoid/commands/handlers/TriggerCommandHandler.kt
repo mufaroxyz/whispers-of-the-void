@@ -22,8 +22,9 @@ object TriggerCommandHandler {
             source.sendError(Text.of("Command can only be executed by a living entity"))
             return 0
         }
-        val eventName = StringArgumentType.getString(ctx, "eventName");
-        val (category, name) = eventName.split(".")
+
+        val eventId = StringArgumentType.getString(ctx, "eventName");
+        val (category, name) = eventId.split(".")
 
         val playerData = PlayerFearState.getPlayerState(player as PlayerEntity)
 
@@ -37,7 +38,7 @@ object TriggerCommandHandler {
 
         return try {
             HorrorEventRegister.getEventManager().triggerEvent(eventContext, castStringToEventType(category), name)
-            source.sendFeedback({ Text.of("Triggered event $eventName") }, true)
+            source.sendFeedback({ Text.of("Triggered event $eventId") }, true)
             1
         } catch (e: IllegalArgumentException) {
             source.sendError(Text.of(e.message))

@@ -1,6 +1,8 @@
 package dev.mufaro.whispersOfTheVoid.events.mod
 
 import dev.mufaro.whispersOfTheVoid.network.packets.HorrorEventPacket
+import net.fabricmc.api.EnvType
+import net.fabricmc.api.Environment
 
 class HorrorEventManager {
     private val events = mutableMapOf<EventType, MutableList<HorrorEvent>>()
@@ -24,7 +26,7 @@ class HorrorEventManager {
 
         val targetPlayers = event.executeServer(context)
         if (targetPlayers is ReturnForClientExecution.SuccessPlayerList) {
-            HorrorEventPacket.sendToPlayers(targetPlayers.value, category, identifier)
+            HorrorEventPacket.sendToPlayers(targetPlayers.value, event.eventId)
         }
 
         // post-client execution just in case if it's needed
