@@ -17,7 +17,7 @@ import net.minecraft.command.argument.EntityArgumentType
 import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.ServerCommandSource
 
-object CommandRegister {
+object CommandRegistry {
     private fun createConfigArgument(configKey: String): ArgumentCommandNode<ServerCommandSource, *> {
         return when (worldConfigTypeMap[configKey]) {
             "int", "Integer" -> argument<ServerCommandSource, Int>("configValue", IntegerArgumentType.integer()).build()
@@ -27,7 +27,7 @@ object CommandRegister {
         }
     }
 
-    fun initialize() {
+    fun register() {
         CommandRegistrationCallback.EVENT.register({ dispatcher, registryAccess, env ->
             dispatcher.register(CommandManager.literal("fear")
                 .then(CommandManager.literal("get")

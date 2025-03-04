@@ -1,11 +1,14 @@
 package dev.mufaro.whispersOfTheVoid.events.mod
 
+import dev.mufaro.whispersOfTheVoid.WhispersOfTheVoid
 import dev.mufaro.whispersOfTheVoid.events.mod.events.BehindYouWhisperEvent
 
-object HorrorEventRegister {
+object HorrorEventRegistry {
     private val eventManager = HorrorEventManager()
 
-    fun initialize() {
+    fun register() {
+        WhispersOfTheVoid.Logger.info("Registering Horror Events")
+
         eventManager.registerEvent(BehindYouWhisperEvent)
     }
 

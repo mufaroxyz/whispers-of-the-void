@@ -6,7 +6,7 @@ import net.minecraft.registry.Registry
 import net.minecraft.sound.SoundEvent
 import net.minecraft.util.Identifier
 
-object CustomSounds {
+object CustomSoundsRegistry {
     var BEHIND_YOU = registerSound("behind_you")
 
     private fun registerSound(id: String): SoundEvent {
@@ -14,7 +14,7 @@ object CustomSounds {
         return Registry.register(Registries.SOUND_EVENT, identifier, SoundEvent.of(identifier))
     }
 
-    fun initialize() {
+    fun register() {
         WhispersOfTheVoid.Logger.info("Registering sounds")
     }
 }

@@ -1,7 +1,11 @@
 package dev.mufaro.whispersOfTheVoid.events.fabric
 
-object EventRegister {
-    fun initialize() {
+import dev.mufaro.whispersOfTheVoid.WhispersOfTheVoid
+
+object EventRegistry {
+    fun register() {
+        WhispersOfTheVoid.Logger.info("Registering events")
+
         ServerPlayConnectionHandler.registerServerPlayConnectionEvents()
         ServerTickHandler.registerServerTickEvents()
     }
