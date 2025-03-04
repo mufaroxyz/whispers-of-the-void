@@ -1,11 +1,8 @@
 package dev.mufaro.whispersOfTheVoid.commands
 
-import com.mojang.brigadier.arguments.BoolArgumentType
-import com.mojang.brigadier.arguments.DoubleArgumentType
 import com.mojang.brigadier.arguments.IntegerArgumentType
 import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.builder.RequiredArgumentBuilder.argument
-import com.mojang.brigadier.tree.ArgumentCommandNode
 import dev.mufaro.whispersOfTheVoid.commands.handlers.ConfigCommandHandler
 import dev.mufaro.whispersOfTheVoid.commands.handlers.FearCommandHandler
 import dev.mufaro.whispersOfTheVoid.commands.handlers.TriggerCommandHandler
@@ -18,15 +15,6 @@ import net.minecraft.server.command.CommandManager
 import net.minecraft.server.command.ServerCommandSource
 
 object CommandRegistry {
-    private fun createConfigArgument(configKey: String): ArgumentCommandNode<ServerCommandSource, *> {
-        return when (worldConfigTypeMap[configKey]) {
-            "int", "Integer" -> argument<ServerCommandSource, Int>("configValue", IntegerArgumentType.integer()).build()
-            "double", "Double" -> argument<ServerCommandSource, Double>("configValue", DoubleArgumentType.doubleArg()).build()
-            "boolean", "Boolean" -> argument<ServerCommandSource, Boolean>("configValue", BoolArgumentType.bool()).build()
-            else -> argument<ServerCommandSource, String>("configValue", StringArgumentType.string()).build()
-        }
-    }
-
     fun register() {
         CommandRegistrationCallback.EVENT.register({ dispatcher, registryAccess, env ->
             dispatcher.register(CommandManager.literal("fear")
