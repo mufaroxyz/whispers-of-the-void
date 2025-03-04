@@ -8,5 +8,6 @@ object EventRegistry {
 
         ServerPlayConnectionHandler.registerServerPlayConnectionEvents()
         ServerTickHandler.registerServerTickEvents()
+        ServerPlayNetworkingHandler.register()
     }
 }
