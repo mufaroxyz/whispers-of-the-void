@@ -8,11 +8,11 @@ import net.minecraft.registry.RegistryKeys
 import net.minecraft.util.Identifier
 
 object VoidwraithEntityRegister {
-    var id = Identifier.of(WhispersOfTheVoid.MOD_ID, "voidwrath")
-    var key = RegistryKey.of(RegistryKeys.ENTITY_TYPE, id)
+    private var id: Identifier = Identifier.of(WhispersOfTheVoid.MOD_ID, "voidwrath")
+    var key: RegistryKey<EntityType<*>> = RegistryKey.of(RegistryKeys.ENTITY_TYPE, id)
 
-    var entityType = EntityType.Builder.create(
+    var entityType: EntityType<VoidwraithEntity> = EntityType.Builder.create(
         { type: EntityType<VoidwraithEntity>, world -> VoidwraithEntity(type, world) },
         SpawnGroup.MONSTER
-    ).build(key)
+    ).dimensions(1f, 2.35f).build(key)
 }

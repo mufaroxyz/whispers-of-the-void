@@ -23,6 +23,7 @@ class WhispersOfTheVoid : ModInitializer {
         CommandRegister.initialize()
         CustomSounds.initialize()
         HorrorEventRegister.initialize()
+        EntityRegistry
 
         FabricDefaultAttributeRegistry.register(EntityRegistry.Voidwraith, VoidwraithEntity.createAttributes())
 
