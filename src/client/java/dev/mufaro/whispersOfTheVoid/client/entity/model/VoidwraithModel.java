@@ -28,27 +28,27 @@ public class VoidwraithModel extends EntityModel<VoidwraithEntityRenderState> {
 
         ModelPartData voidwraith = root.addChild("voidwraith", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
-        ModelPartData body = voidwraith.addChild("body", ModelPartBuilder.create(), ModelTransform.pivot(2.0F, -14.0F, -7.0F));
+        ModelPartData body = voidwraith.addChild("body", ModelPartBuilder.create(), ModelTransform.pivot(0.0F, 0.0F, 0.0F));
 
-        ModelPartData upper = body.addChild("upper", ModelPartBuilder.create().uv(0, 34).cuboid(-2.0F, -14.0F, 4.0F, 4.0F, 12.0F, 4.0F, new Dilation(0.0F))
-                .uv(24, 32).cuboid(-2.0F, -14.0F, -8.0F, 4.0F, 12.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(-2.0F, 2.0F, 7.0F));
+        ModelPartData upper = body.addChild("upper", ModelPartBuilder.create().uv(0, 34).cuboid(-3.0F, -12.0F, 11.0F, 4.0F, 12.0F, 4.0F, new Dilation(0.0F))
+                .uv(24, 32).cuboid(-3.0F, -12.0F, -1.0F, 4.0F, 12.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(1.0F, -14.0F, -7.0F));
 
-        upper.addChild("chest_r1", ModelPartBuilder.create().uv(0, 16).cuboid(-7.0F, -14.0F, -1.0F, 8.0F, 14.0F, 4.0F, new Dilation(0.0F)), ModelTransform.of(-1.0F, 0.0F, -3.0F, 0.0F, 1.5708F, 0.0F));
-        body.addChild("lower", ModelPartBuilder.create().uv(32, 0).cuboid(0.0F, -10.0F, -4.0F, 4.0F, 12.0F, 4.0F, new Dilation(0.0F))
-                .uv(24, 16).cuboid(0.0F, -10.0F, 0.0F, 4.0F, 12.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(-4.0F, 12.0F, 7.0F));
+        upper.addChild("chest_r1", ModelPartBuilder.create().uv(0, 16).cuboid(-7.0F, -14.0F, -1.0F, 8.0F, 14.0F, 4.0F, new Dilation(0.0F)), ModelTransform.of(-2.0F, 2.0F, 4.0F, 0.0F, 1.5708F, 0.0F));
+        body.addChild("lower", ModelPartBuilder.create().uv(32, 0).cuboid(-3.0F, -12.0F, -5.0F, 4.0F, 12.0F, 4.0F, new Dilation(0.0F))
+                .uv(24, 16).cuboid(-3.0F, -12.0F, -1.0F, 4.0F, 12.0F, 4.0F, new Dilation(0.0F)), ModelTransform.pivot(1.0F, 0.0F, 1.0F));
 
-        ModelPartData head = voidwraith.addChild("head", ModelPartBuilder.create().uv(0, 0).cuboid(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -26.0F, 0.0F));
+        ModelPartData head = voidwraith.addChild("head", ModelPartBuilder.create().uv(0, 0).cuboid(-4.0F, -4.0F, -4.0F, 8.0F, 8.0F, 8.0F, new Dilation(0.0F)), ModelTransform.pivot(0.0F, -30.0F, 0.0F));
 
-        ModelPartData dongle = head.addChild("dongle", ModelPartBuilder.create(), ModelTransform.pivot(1.0F, -11.7302F, 4.8658F));
+        ModelPartData dongle = head.addChild("dongle", ModelPartBuilder.create(), ModelTransform.pivot(1.0F, -7.7302F, 4.8658F));
 
-        dongle.addChild("cube_r1", ModelPartBuilder.create().uv(20, 38).cuboid(-3.0F, -2.0F, -2.5F, 1.0F, 2.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0, 1.0F, 0.0F));
-        dongle.addChild("cube_r2", ModelPartBuilder.create().uv(16, 38).cuboid(-3.0F, -2.0F, -2.5F, 1.0F, 2.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 2.6297F, -0.2045F, -0, 0.0F, 0.0F));
+        dongle.addChild("cube_r1", ModelPartBuilder.create().uv(20, 38).cuboid(-3.0F, -2.0F, -2.5F, 1.0F, 2.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.3054F, 0.0F, 0.0F));
+        dongle.addChild("cube_r2", ModelPartBuilder.create().uv(16, 38).cuboid(-3.0F, -2.0F, -2.5F, 1.0F, 2.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 2.6297F, -0.2045F, -0.1309F, 0.0F, 0.0F));
         dongle.addChild("cube_r3", ModelPartBuilder.create().uv(16, 34).cuboid(-3.0F, -3.0F, 0.0F, 1.0F, 3.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 4.7302F, -3.8658F, -0.4363F, 0.0F, 0.0F));
 
-        ModelPartData dongle2 = head.addChild("dongle2", ModelPartBuilder.create(), ModelTransform.of(-4.0F, -11.7302F, -5.1342F, 0.0F, 3.1416F, 0.0F));
+        ModelPartData dongle2 = head.addChild("dongle2", ModelPartBuilder.create(), ModelTransform.of(-4.0F, -7.7302F, -5.1342F, 0.0F, 3.1416F, 0.0F));
 
-        dongle2.addChild("cube_r4", ModelPartBuilder.create().uv(40, 19).cuboid(-3.0F, -2.0F, -2.5F, 1.0F, 2.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0, 0.0F, 0.0F));
-        dongle2.addChild("cube_r5", ModelPartBuilder.create().uv(40, 16).cuboid(-3.0F, -2.0F, -2.5F, 1.0F, 2.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 2.6297F, -0.2045F, -0, 0.0F, 0.0F));
+        dongle2.addChild("cube_r4", ModelPartBuilder.create().uv(40, 19).cuboid(-3.0F, -2.0F, -2.5F, 1.0F, 2.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 0.0F, 0.0F, 0.3054F, 0.0F, 0.0F));
+        dongle2.addChild("cube_r5", ModelPartBuilder.create().uv(40, 16).cuboid(-3.0F, -2.0F, -2.5F, 1.0F, 2.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 2.6297F, -0.2045F, -0.1309F, 0.0F, 0.0F));
         dongle2.addChild("cube_r6", ModelPartBuilder.create().uv(20, 34).cuboid(-3.0F, -3.0F, 0.0F, 1.0F, 3.0F, 1.0F, new Dilation(0.0F)), ModelTransform.of(0.0F, 4.7302F, -3.8658F, -0.4363F, 0.0F, 0.0F));
 
         return TexturedModelData.of(modelData, 64, 64);
