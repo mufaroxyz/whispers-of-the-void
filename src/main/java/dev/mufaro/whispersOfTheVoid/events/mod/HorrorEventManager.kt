@@ -1,8 +1,6 @@
 package dev.mufaro.whispersOfTheVoid.events.mod
 
 import dev.mufaro.whispersOfTheVoid.network.packets.HorrorEventPacket
-import net.fabricmc.api.EnvType
-import net.fabricmc.api.Environment
 
 class HorrorEventManager {
     private val events = mutableMapOf<EventType, MutableList<HorrorEvent>>()
@@ -15,12 +13,12 @@ class HorrorEventManager {
         events.getOrPut(event.type) { mutableListOf() }.add(event)
     }
 
-    fun getEvent(category: EventType, identifier: String): HorrorEvent {
+    private fun getEvent(category: EventType, identifier: String): HorrorEvent {
         return events[category]?.find { it.identifier == identifier } ?: throw IllegalArgumentException("Event $identifier not found")
     }
 
     fun triggerEvent(context: ServerEventContext, category: EventType, identifier: String) {
-        if (category == EventType.NONE) return;
+        if (category == EventType.NONE) return
 
         val event = getEvent(category, identifier)
 
@@ -34,7 +32,7 @@ class HorrorEventManager {
     }
 
     fun triggerRandomEvent(context: ServerEventContext, ofType: EventType?) {
-        if (events.isEmpty() || (ofType != null && ofType == EventType.NONE)) return;
+        if (events.isEmpty() || (ofType != null && ofType == EventType.NONE)) return
 
         val possibleEvents =
             if (ofType == null)
@@ -44,7 +42,7 @@ class HorrorEventManager {
             else events[ofType] ?: return
 
         val totalWeight = possibleEvents.sumOf { it.weight }
-        if (totalWeight <= 0) return;
+        if (totalWeight <= 0) return
 
         var random = context.world.random.nextInt(totalWeight)
         for (event in possibleEvents) {

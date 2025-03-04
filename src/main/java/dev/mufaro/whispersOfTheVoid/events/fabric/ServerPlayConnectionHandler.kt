@@ -8,12 +8,12 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking
 
 object ServerPlayConnectionHandler {
     fun registerServerPlayConnectionEvents() {
-        ServerPlayConnectionEvents.JOIN.register { handler, sender, server ->
-            val playerState = PlayerFearState.getPlayerState(handler.player);
-            val data = PacketByteBufs.create();
-            data.writeInt(playerState.fearLevel);
+        ServerPlayConnectionEvents.JOIN.register { handler, _, server ->
+            val playerState = PlayerFearState.getPlayerState(handler.player)
+            val data = PacketByteBufs.create()
+            data.writeInt(playerState.fearLevel)
             server.execute {
-                ServerPlayNetworking.send(handler.player, InitialSyncPayload(playerState));
+                ServerPlayNetworking.send(handler.player, InitialSyncPayload(playerState))
             }
         }
     }

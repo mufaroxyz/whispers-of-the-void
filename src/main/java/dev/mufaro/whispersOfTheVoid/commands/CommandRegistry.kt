@@ -16,32 +16,53 @@ import net.minecraft.server.command.ServerCommandSource
 
 object CommandRegistry {
     fun register() {
-        CommandRegistrationCallback.EVENT.register({ dispatcher, registryAccess, env ->
-            dispatcher.register(CommandManager.literal("fear")
-                .then(CommandManager.literal("get")
-                    .then(CommandManager.argument("target", EntityArgumentType.player())
-                .executes(FearCommandHandler::getFearLevel)
-            ))
-                .then(CommandManager.literal("set")
-                    .requires({ source -> source.hasPermissionLevel(2) })
-                    .then(CommandManager.argument("target", EntityArgumentType.player())
-                    .then(CommandManager.argument("fearLevel", IntegerArgumentType.integer())
-                    .executes(FearCommandHandler::setFearLevel)
-            ))))
+        CommandRegistrationCallback.EVENT.register { dispatcher, _, _ ->
+            dispatcher.register(
+                CommandManager.literal("fear")
+                    .then(
+                        CommandManager.literal("get")
+                            .then(
+                                CommandManager.argument("target", EntityArgumentType.player())
+                                    .executes(FearCommandHandler::getFearLevel)
+                            )
+                    )
+                    .then(
+                        CommandManager.literal("set")
+                            .requires({ source -> source.hasPermissionLevel(2) })
+                            .then(
+                                CommandManager.argument("target", EntityArgumentType.player())
+                                    .then(
+                                        CommandManager.argument("fearLevel", IntegerArgumentType.integer())
+                                            .executes(FearCommandHandler::setFearLevel)
+                                    )
+                            )
+                    )
+            )
 
-            dispatcher.register(CommandManager.literal("whispersofthevoid")
-                .then(CommandManager.literal("config")
-                    .then(CommandManager.literal("get")
-                        .then(CommandManager.argument("configKey", StringArgumentType.string())
-                            .suggests(ConfigSuggestionProvider())
-                            .executes(ConfigCommandHandler::getConfig)
-                        ))
+            dispatcher.register(
+                CommandManager.literal("whispersofthevoid")
+                .then(
+                    CommandManager.literal("config")
+                    .then(
+                        CommandManager.literal("get")
+                            .then(
+                                CommandManager.argument("configKey", StringArgumentType.string())
+                                    .suggests(ConfigSuggestionProvider())
+                                    .executes(ConfigCommandHandler::getConfig)
+                            )
+                    )
 
-                    .then(CommandManager.literal("set")
+                    .then(
+                        CommandManager.literal("set")
                         .requires { source -> source.hasPermissionLevel(2) }
-                        .then(argument<ServerCommandSource, String>("configKey", StringArgumentType.string())
+                        .then(
+                            argument<ServerCommandSource, String>("configKey", StringArgumentType.string())
                             .suggests(ConfigSuggestionProvider())
-                            .then(argument<ServerCommandSource, String>("configValue", StringArgumentType.string())
+                            .then(
+                                argument<ServerCommandSource, String>(
+                                "configValue",
+                                StringArgumentType.string()
+                            )
                                 .suggests { context, builder ->
                                     val configKey = context.getArgument("configKey", String::class.java)
                                     when (worldConfigTypeMap[configKey]) {
@@ -57,13 +78,15 @@ object CommandRegistry {
                         )
                     )
                 )
-                .then(CommandManager.literal("trigger")
-                    .then(argument<ServerCommandSource?, String?>("eventName", StringArgumentType.string())
-                        .suggests(EventSuggestionProvider())
-                        .executes(TriggerCommandHandler::handleTriggerCommand)
-                    )
+                .then(
+                    CommandManager.literal("trigger")
+                        .then(
+                            argument<ServerCommandSource?, String?>("eventName", StringArgumentType.string())
+                                .suggests(EventSuggestionProvider())
+                                .executes(TriggerCommandHandler::handleTriggerCommand)
+                        )
                 )
             )
-        })
+        }
     }
 }

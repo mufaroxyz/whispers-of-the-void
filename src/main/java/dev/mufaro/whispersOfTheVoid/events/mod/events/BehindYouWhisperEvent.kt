@@ -1,6 +1,5 @@
 package dev.mufaro.whispersOfTheVoid.events.mod.events
 
-import dev.mufaro.whispersOfTheVoid.WhispersOfTheVoid
 import dev.mufaro.whispersOfTheVoid.data.Constants
 import dev.mufaro.whispersOfTheVoid.events.mod.*
 import dev.mufaro.whispersOfTheVoid.sounds.CustomSoundsRegistry
@@ -16,8 +15,6 @@ object BehindYouWhisperEvent : HorrorEvent {
         if (!context.world.isClient) {
             context.world.playSound(null, context.player.blockPos, CustomSoundsRegistry.BEHIND_YOU, SoundCategory.AMBIENT, 1f, 1f)
         }
-
-        WhispersOfTheVoid.Logger.info("full id -> ${this.eventId}")
 
         val playerList = context.server.playerManager.playerList
 

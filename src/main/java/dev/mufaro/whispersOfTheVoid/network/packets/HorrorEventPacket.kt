@@ -1,6 +1,5 @@
 package dev.mufaro.whispersOfTheVoid.network.packets
 
-import dev.mufaro.whispersOfTheVoid.events.mod.EventType
 import dev.mufaro.whispersOfTheVoid.network.payloads.HorrorEventPayload
 import net.fabricmc.fabric.api.networking.v1.PacketByteBufs
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking

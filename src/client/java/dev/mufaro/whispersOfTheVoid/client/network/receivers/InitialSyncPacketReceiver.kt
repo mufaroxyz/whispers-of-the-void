@@ -7,11 +7,11 @@ import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking
 
 object InitialSyncPacketReceiver {
     fun registerReceiver() {
-        ClientPlayNetworking.registerGlobalReceiver(InitialSyncPayload.ID, { payload, context ->
-            val playerData = payload.playerData;
-            WhispersOfTheVoidClient.clientData.playerData = playerData;
+        ClientPlayNetworking.registerGlobalReceiver(InitialSyncPayload.ID) { payload, _ ->
+            val playerData = payload.playerData
+            WhispersOfTheVoidClient.clientData.playerData = playerData
 
-            WhispersOfTheVoid.Logger.info("Received initial sync payload with fear level: ${playerData.fearLevel}");
-        })
+            WhispersOfTheVoid.Logger.info("Received initial sync payload with fear level: ${playerData.fearLevel}")
+        }
     }
 }

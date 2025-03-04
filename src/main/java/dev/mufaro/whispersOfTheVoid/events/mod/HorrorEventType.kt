@@ -1,9 +1,6 @@
 package dev.mufaro.whispersOfTheVoid.events.mod
 
-import com.mojang.authlib.minecraft.client.MinecraftClient
 import dev.mufaro.whispersOfTheVoid.data.Constants
-import net.fabricmc.api.EnvType
-import net.fabricmc.api.Environment
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
