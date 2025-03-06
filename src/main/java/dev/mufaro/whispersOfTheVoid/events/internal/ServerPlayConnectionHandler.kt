@@ -1,4 +1,4 @@
-package dev.mufaro.whispersOfTheVoid.events.fabric
+package dev.mufaro.whispersOfTheVoid.events.internal
 
 import dev.mufaro.whispersOfTheVoid.data.PlayerFearState
 import dev.mufaro.whispersOfTheVoid.network.payloads.InitialSyncPayload
