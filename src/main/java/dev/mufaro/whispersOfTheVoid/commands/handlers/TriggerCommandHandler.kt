@@ -4,8 +4,8 @@ import com.mojang.brigadier.arguments.StringArgumentType
 import com.mojang.brigadier.context.CommandContext
 import dev.mufaro.whispersOfTheVoid.WhispersOfTheVoid
 import dev.mufaro.whispersOfTheVoid.data.PlayerFearState
-import dev.mufaro.whispersOfTheVoid.events.mod.HorrorEventRegistry
-import dev.mufaro.whispersOfTheVoid.events.mod.ServerEventContext
+import dev.mufaro.whispersOfTheVoid.events.base.EventRegistry
+import dev.mufaro.whispersOfTheVoid.events.base.ServerEventContext
 import dev.mufaro.whispersOfTheVoid.utils.castStringToEventType
 import dev.mufaro.whispersOfTheVoid.utils.numericFearToLevel
 import net.minecraft.entity.LivingEntity
@@ -37,7 +37,7 @@ object TriggerCommandHandler {
         )
 
         return try {
-            HorrorEventRegistry.getEventManager().triggerEvent(eventContext, castStringToEventType(category), name)
+            EventRegistry.getEventManager().triggerEvent(eventContext, castStringToEventType(category), name)
             source.sendFeedback({ Text.of("Triggered event $eventId") }, true)
             1
         } catch (e: IllegalArgumentException) {

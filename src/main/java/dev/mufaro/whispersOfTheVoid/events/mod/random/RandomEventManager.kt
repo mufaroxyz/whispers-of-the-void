@@ -1,8 +1,12 @@
-package dev.mufaro.whispersOfTheVoid.events.mod
+package dev.mufaro.whispersOfTheVoid.events.mod.random
 
+import dev.mufaro.whispersOfTheVoid.events.base.EventType
+import dev.mufaro.whispersOfTheVoid.events.base.HorrorEvent
+import dev.mufaro.whispersOfTheVoid.events.base.ReturnForClientExecution
+import dev.mufaro.whispersOfTheVoid.events.base.ServerEventContext
 import dev.mufaro.whispersOfTheVoid.network.packets.HorrorEventPacket
 
-class HorrorEventManager {
+class RandomEventManager {
     private val events = mutableMapOf<EventType, MutableList<HorrorEvent>>()
 
     fun getEvents(): Map<EventType, List<HorrorEvent>> {

@@ -1,7 +1,10 @@
-package dev.mufaro.whispersOfTheVoid.events.mod.events
+package dev.mufaro.whispersOfTheVoid.events.mod.random.events
 
 import dev.mufaro.whispersOfTheVoid.data.Constants
-import dev.mufaro.whispersOfTheVoid.events.mod.*
+import dev.mufaro.whispersOfTheVoid.events.base.EventType
+import dev.mufaro.whispersOfTheVoid.events.base.HorrorEvent
+import dev.mufaro.whispersOfTheVoid.events.base.ReturnForClientExecution
+import dev.mufaro.whispersOfTheVoid.events.base.ServerEventContext
 import dev.mufaro.whispersOfTheVoid.sounds.CustomSoundsRegistry
 import net.minecraft.server.network.ServerPlayerEntity
 import net.minecraft.sound.SoundCategory

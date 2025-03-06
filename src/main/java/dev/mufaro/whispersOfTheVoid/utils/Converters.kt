@@ -1,7 +1,7 @@
 package dev.mufaro.whispersOfTheVoid.utils
 
 import dev.mufaro.whispersOfTheVoid.data.Constants
-import dev.mufaro.whispersOfTheVoid.events.mod.EventType
+import dev.mufaro.whispersOfTheVoid.events.base.EventType
 
 fun numericFearToLevel(days: Int): Constants.FearLevel {
     return when {

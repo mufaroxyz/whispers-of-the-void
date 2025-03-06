@@ -3,8 +3,7 @@ package dev.mufaro.whispersOfTheVoid
 import dev.mufaro.whispersOfTheVoid.commands.CommandRegistry
 import dev.mufaro.whispersOfTheVoid.entity.EntityRegistry
 import dev.mufaro.whispersOfTheVoid.entity.voidwraith.VoidwraithEntity
-import dev.mufaro.whispersOfTheVoid.events.fabric.EventRegistry
-import dev.mufaro.whispersOfTheVoid.events.mod.HorrorEventRegistry
+import dev.mufaro.whispersOfTheVoid.events.base.EventRegistry
 import dev.mufaro.whispersOfTheVoid.network.PayloadRegistry
 import dev.mufaro.whispersOfTheVoid.sounds.CustomSoundsRegistry
 import net.fabricmc.api.ModInitializer
@@ -20,10 +19,10 @@ class WhispersOfTheVoid : ModInitializer {
 
     override fun onInitialize() {
         PayloadRegistry.register()
-        EventRegistry.register()
+        EventRegistry.registerInternal()
+        EventRegistry.registerHorror()
         CommandRegistry.register()
         CustomSoundsRegistry.register()
-        HorrorEventRegistry.register()
         EntityRegistry
 
         FabricDefaultAttributeRegistry.register(EntityRegistry.Voidwraith, VoidwraithEntity.createAttributes())
