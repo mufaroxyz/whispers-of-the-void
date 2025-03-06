@@ -7,7 +7,7 @@ object ServerPlayNetworkingHandler {
     fun register() {
         ServerPlayNetworking.registerGlobalReceiver(EntityRaycastPayload.ID, { payload, player ->
             val entityUUID = payload.entityUUID
-            println("Received entity raycast packet with UUID: $entityUUID")
+            println("Received entity raycast packet with UUID: $entityUUID sent by player: ${player.player().name}")
         })
     }
 }
