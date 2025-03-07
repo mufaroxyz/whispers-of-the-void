@@ -9,12 +9,12 @@ import java.util.UUID
 object ServerPlayNetworkingHandler {
     fun register() {
         ServerPlayNetworking.registerGlobalReceiver(EntityRaycastPayload.ID, { payload, player ->
-            val entityUUID = payload.entityUUID
-            println("Received entity raycast packet with UUID: $entityUUID sent by player: ${player.player().name}")
-            var raycastEventContext = RaycastEventContext(
+            val entityNetId = payload.entityNetId
+            println("Received entity raycast packet with net id: $entityNetId sent by player: ${player.player().name}")
+            val raycastEventContext = RaycastEventContext(
                 player.player(),
                 player.player().server,
-                UUID.fromString(entityUUID)
+                entityNetId
             )
             EventRegistry.raycastEventManager.handleEntityRaycast(raycastEventContext)
         })

@@ -5,16 +5,16 @@ import net.minecraft.network.RegistryByteBuf
 import net.minecraft.network.codec.PacketCodec
 import net.minecraft.network.packet.CustomPayload
 
-class EntityRaycastPayload(val entityUUID: String) : CustomPayload {
+class EntityRaycastPayload(val entityNetId: Int) : CustomPayload {
     companion object {
         val ID = CustomPayload.Id<EntityRaycastPayload>(NetworkingConstants.ENTITY_RAYCAST_PACKET_ID)
         val CODEC: PacketCodec<RegistryByteBuf, EntityRaycastPayload> = PacketCodec.of(
             { payload, buf ->
-                buf.writeString(payload.entityUUID)
+                buf.writeInt(payload.entityNetId)
             },
             { buf ->
-                val entityUUID = buf.readString()
-                EntityRaycastPayload(entityUUID)
+                val entityNetId = buf.readInt()
+                EntityRaycastPayload(entityNetId)
             }
         )
     }

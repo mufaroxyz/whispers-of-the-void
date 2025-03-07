@@ -5,12 +5,11 @@ import dev.mufaro.whispersOfTheVoid.events.base.EventTypeCategory
 import net.minecraft.entity.Entity
 import net.minecraft.server.MinecraftServer
 import net.minecraft.server.network.ServerPlayerEntity
-import java.util.UUID
 
 data class RaycastEventContext(
     val player: ServerPlayerEntity,
     val server: MinecraftServer,
-    val entityUUID: UUID
+    val entityNetId: Int
 )
 
 interface RaycastEvent<T> : Event {

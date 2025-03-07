@@ -50,7 +50,6 @@ object RaycastUtil {
             val entity = entityHitResult.entity
 
             if(!entityCooldowns.containsKey(entity.uuid)) {
-                WhispersOfTheVoid.Logger.info("Raycast hit entity: ${entity.name}")
                 notifyServerOfRaycast(entity)
                 entityCooldowns[entity.uuid] = HIT_COOLDOWN
             }
@@ -64,8 +63,7 @@ object RaycastUtil {
         val endPosition = cameraPosition.add(rotationVec.multiply(MAX_REACH))
 
         val box = Box(cameraPosition.x, cameraPosition.y, cameraPosition.z,
-            endPosition.x, endPosition.y, endPosition.z)
-            .expand(1.0)
+            endPosition.x, endPosition.y, endPosition.z).shrink(0.2, 0.2, 0.2)
 
         val entityHitResult = ProjectileUtil.raycast(
             cameraEntity,
@@ -102,7 +100,7 @@ object RaycastUtil {
     }
 
     private fun notifyServerOfRaycast(entity: Entity) {
-        ClientPlayNetworking.send(EntityRaycastPayload(entity.uuidAsString))
+        ClientPlayNetworking.send(EntityRaycastPayload(entity.id))
     }
 
     fun <T : Entity> targetEntity(entityClass: Class<T>) {
