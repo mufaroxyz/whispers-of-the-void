@@ -9,6 +9,7 @@ import net.minecraft.world.World
 
 enum class EventTypeCategory {
     RANDOM,
+    RAYCAST,
     NONE
 }
 
@@ -19,26 +20,3 @@ enum class EventType {
     NONE
 }
 
-interface HorrorEvent {
-    val identifier get() = this::class.simpleName
-    val type: EventType
-    val minFearLevel: Constants.FearLevel
-    val weight: Int
-    fun executeServer(context: ServerEventContext): ReturnForClientExecution<List<ServerPlayerEntity>>
-    fun executeServerPost(context: ServerEventContext) {}
-    val eventId: String
-        get() = "${type.name}.$identifier"
-}
-
-data class ServerEventContext(
-    val world: World,
-    val server: MinecraftServer,
-    val pos: BlockPos,
-    val player: PlayerEntity,
-    val fearLevel: Constants.FearLevel
-)
-
-sealed class ReturnForClientExecution<out T> {
-    data class SuccessPlayerList<out T>(val value: T) : ReturnForClientExecution<T>()
-    data class No(val value: Int = 0) : ReturnForClientExecution<Nothing>()
-}
