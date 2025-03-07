@@ -1,5 +1,6 @@
 package dev.mufaro.whispersOfTheVoid.events.mod.raycast.events
 
+import dev.mufaro.whispersOfTheVoid.WhispersOfTheVoid
 import dev.mufaro.whispersOfTheVoid.entity.voidwraith.VoidwraithEntity
 import dev.mufaro.whispersOfTheVoid.events.mod.raycast.RaycastEvent
 import dev.mufaro.whispersOfTheVoid.events.mod.raycast.RaycastEventContext
@@ -12,6 +13,8 @@ object VoidwraithRaycastEvent : RaycastEvent<VoidwraithEntity> {
 
     // todo: complete the implementation of entity searching and executing the event.
     override fun isTargetEntity(context: RaycastEventContext): Boolean {
+        WhispersOfTheVoid.Logger.info("Checking if entity is a voidwraith")
+
         val world = context.player.world
 
         return false;

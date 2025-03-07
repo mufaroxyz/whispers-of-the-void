@@ -13,7 +13,7 @@ class EventSuggestionProvider : SuggestionProvider<ServerCommandSource> {
         ctx: CommandContext<ServerCommandSource>?,
         builder: SuggestionsBuilder?
     ): CompletableFuture<Suggestions> {
-        val events = EventRegistry.getEventManager().getEvents()
+        val events = EventRegistry.horrorEventManager.getEvents()
 
         events.forEach { (_, eventList) ->
             eventList.forEach { event ->

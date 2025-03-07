@@ -29,15 +29,15 @@ object TriggerCommandHandler {
         val playerData = PlayerFearState.getPlayerState(player as PlayerEntity)
 
         val eventContext = ServerEventContext(
-            pos = player.blockPos,
-            world = player.world,
+//            pos = player.blockPos,
+//            world = player.world,
             player = player,
-            fearLevel = numericFearToLevel(playerData.fearLevel),
+//            fearLevel = numericFearToLevel(playerData.fearLevel),
             server = source.server
         )
 
         return try {
-            EventRegistry.getEventManager().triggerEvent(eventContext, castStringToEventType(category), name)
+            EventRegistry.horrorEventManager.triggerEvent(eventContext, castStringToEventType(category), name)
             source.sendFeedback({ Text.of("Triggered event $eventId") }, true)
             1
         } catch (e: IllegalArgumentException) {

@@ -13,7 +13,7 @@ data class RaycastEventContext(
     val entityUUID: UUID
 )
 
-interface RaycastEvent<T : Entity?> : Event {
+interface RaycastEvent<T> : Event {
     private val identifier get() = this::class.simpleName
     val type get() = EventTypeCategory.RAYCAST
     val targetedEntity: Class<T>

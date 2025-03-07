@@ -1,18 +1,20 @@
 package dev.mufaro.whispersOfTheVoid.events.mod.raycast
 
-import java.util.*
+import net.minecraft.entity.Entity
+import net.minecraft.server.MinecraftServer
+import java.util.UUID
 
 class RaycastEventManager {
-    private val events = mutableMapOf<String, RaycastEvent>()
+    private val events = mutableMapOf<String, RaycastEvent<*>>()
 
-    fun register(event: RaycastEvent) {
-        events[event.getEventId()] = event
+    fun <T : Entity> register(event: RaycastEvent<T>) {
+        events[event.eventId] = event
     }
 
-    fun handleEntityRaycast(entityUUID: UUID) {
+    fun handleEntityRaycast(context: RaycastEventContext) {
         events.values.forEach {event ->
-            if (event.canTrigger() && event.isTargetEntity(entityUUID)) {
-                event.onEntityRaycasted(entityUUID)
+            if (event.canTrigger() && event.isTargetEntity(context)) {
+                event.onEntityRaycasted(context)
             }
         }
     }

@@ -6,9 +6,12 @@ import dev.mufaro.whispersOfTheVoid.events.internal.ServerPlayNetworkingHandler
 import dev.mufaro.whispersOfTheVoid.events.internal.ServerTickHandler
 import dev.mufaro.whispersOfTheVoid.events.mod.random.RandomEventManager
 import dev.mufaro.whispersOfTheVoid.events.mod.random.events.BehindYouWhisperEvent
+import dev.mufaro.whispersOfTheVoid.events.mod.raycast.RaycastEventManager
+import dev.mufaro.whispersOfTheVoid.events.mod.raycast.events.VoidwraithRaycastEvent
 
 object EventRegistry {
-    private val horrorEventManager = RandomEventManager()
+    val horrorEventManager = RandomEventManager()
+    val raycastEventManager = RaycastEventManager()
 
     fun registerInternal() {
         WhispersOfTheVoid.Logger.info("Registering internal events")
@@ -22,9 +25,8 @@ object EventRegistry {
         WhispersOfTheVoid.Logger.info("Registering Horror Events")
 
         horrorEventManager.registerEvent(BehindYouWhisperEvent)
+
+        raycastEventManager.register(VoidwraithRaycastEvent)
     }
 
-    fun getHorrorEventManager(): RandomEventManager {
-        return horrorEventManager
-    }
 }
