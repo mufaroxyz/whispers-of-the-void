@@ -6,6 +6,7 @@ import dev.mufaro.whispersOfTheVoid.entity.voidwraith.VoidwraithEntity
 import dev.mufaro.whispersOfTheVoid.events.base.EventRegistry
 import dev.mufaro.whispersOfTheVoid.network.PayloadRegistry
 import dev.mufaro.whispersOfTheVoid.sounds.CustomSoundsRegistry
+import dev.mufaro.whispersOfTheVoid.util.ServerTaskScheduler
 import net.fabricmc.api.ModInitializer
 import net.fabricmc.fabric.api.`object`.builder.v1.entity.FabricDefaultAttributeRegistry
 import org.slf4j.Logger
@@ -23,6 +24,7 @@ class WhispersOfTheVoid : ModInitializer {
         EventRegistry.registerHorror()
         CommandRegistry.register()
         CustomSoundsRegistry.register()
+        ServerTaskScheduler.initialize()
         EntityRegistry
 
         FabricDefaultAttributeRegistry.register(EntityRegistry.Voidwraith, VoidwraithEntity.createAttributes())

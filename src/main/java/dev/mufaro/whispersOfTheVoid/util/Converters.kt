@@ -1,4 +1,4 @@
-package dev.mufaro.whispersOfTheVoid.utils
+package dev.mufaro.whispersOfTheVoid.util
 
 import dev.mufaro.whispersOfTheVoid.data.Constants
 import dev.mufaro.whispersOfTheVoid.events.base.EventType

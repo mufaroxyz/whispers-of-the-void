@@ -6,8 +6,7 @@ import dev.mufaro.whispersOfTheVoid.WhispersOfTheVoid
 import dev.mufaro.whispersOfTheVoid.data.PlayerFearState
 import dev.mufaro.whispersOfTheVoid.events.base.EventRegistry
 import dev.mufaro.whispersOfTheVoid.events.base.ServerEventContext
-import dev.mufaro.whispersOfTheVoid.utils.castStringToEventType
-import dev.mufaro.whispersOfTheVoid.utils.numericFearToLevel
+import dev.mufaro.whispersOfTheVoid.util.castStringToEventType
 import net.minecraft.entity.LivingEntity
 import net.minecraft.entity.player.PlayerEntity
 import net.minecraft.server.command.ServerCommandSource
