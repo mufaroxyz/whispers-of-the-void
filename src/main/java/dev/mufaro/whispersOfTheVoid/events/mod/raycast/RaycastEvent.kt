@@ -19,4 +19,7 @@ interface RaycastEvent<T> : Event {
     fun isTargetEntity(context: RaycastEventContext): Boolean
     fun onEntityRaycasted(context: RaycastEventContext)
     val eventId get() = "${type.name}.${identifier}"
+    fun getEntity(context: RaycastEventContext): Entity? {
+        return context.player.world.getEntityById(context.entityNetId)
+    }
 }
