@@ -5,9 +5,11 @@ import dev.mufaro.whispersOfTheVoid.entity.voidwraith.VoidwraithEntity
 import dev.mufaro.whispersOfTheVoid.events.mod.raycast.RaycastEvent
 import dev.mufaro.whispersOfTheVoid.events.mod.raycast.RaycastEventContext
 import dev.mufaro.whispersOfTheVoid.util.ServerTaskScheduler
+import dev.mufaro.whispersOfTheVoid.util.TeleportHelper
 import net.minecraft.command.argument.EntityAnchorArgumentType
 import net.minecraft.registry.RegistryKeys
 import net.minecraft.server.MinecraftServer
+import net.minecraft.server.ServerTask
 import net.minecraft.util.math.Vec3d
 import java.util.*
 import kotlin.math.cos
@@ -26,10 +28,8 @@ object VoidwraithRaycastEvent : RaycastEvent<VoidwraithEntity> {
         val x = player.x + sin(yaw)
         val z = player.z - cos(yaw)
 
-        entity.isInvisible = true
-        entity.setPosition(x, player.y, z)
-        entity.isInvisible = false
-
+        TeleportHelper.skipNextPostTeleportTransition()
+        entity.refreshPositionAndAngles(x, player.y, z, player.yaw, player.pitch)
         return entity.eyePos
     }
 
@@ -52,7 +52,7 @@ object VoidwraithRaycastEvent : RaycastEvent<VoidwraithEntity> {
         ServerTaskScheduler.chain(
             ServerTaskScheduler.ChainOperation(0) {
                 val newLookPos = teleportBehindPlayer(context)
-                lookAtPos(context, newLookPos)
+//                lookAtPos(context, newLookPos)
             },
             ServerTaskScheduler.ChainOperation(10) {
             }

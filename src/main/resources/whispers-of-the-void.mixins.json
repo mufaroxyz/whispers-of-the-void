@@ -4,6 +4,7 @@
   "package": "dev.mufaro.whispersOfTheVoid.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
+    "EntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1
