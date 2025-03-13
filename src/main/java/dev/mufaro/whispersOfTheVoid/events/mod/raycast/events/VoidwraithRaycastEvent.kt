@@ -29,7 +29,7 @@ object VoidwraithRaycastEvent : RaycastEvent<VoidwraithEntity> {
         val z = player.z - cos(yaw)
 
         TeleportHelper.skipNextPostTeleportTransition()
-        entity.refreshPositionAndAngles(x, player.y, z, player.yaw, player.pitch)
+        entity.updateTrackedPositionAndAngles(x, player.y, z, player.yaw, player.pitch, 1)
         return entity.eyePos
     }
 
